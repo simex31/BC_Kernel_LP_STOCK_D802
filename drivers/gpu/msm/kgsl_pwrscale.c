@@ -416,15 +416,13 @@ int kgsl_pwrscale_init(struct device *dev, const char *governor)
 	/* Let's start with 10 ms and tune in later */
 	profile->polling_ms = 10;
 
-	/* do not include the 'off' level or duplicate freq. levels */
-	for (i = 0; i < (pwr->num_pwrlevels - 1); i++)
+	/* do not include duplicate freq. levels */
+	for (i = 0; i < pwr->num_pwrlevels; i++)
 		pwrscale->freq_table[out++] = pwr->pwrlevels[i].gpu_freq;
 
-	/*
-	 * Max_state is the number of valid power levels.
-	 * The valid power levels range from 0 - (max_state - 1)
-	 */
-	profile->max_state = pwr->num_pwrlevels - 1;
+	/*kgsl different than in original commit, watch out for bugs*/
+	profile->max_state = out - 1;
+
 	/* link storage array to the devfreq profile pointer */
 	profile->freq_table = pwrscale->freq_table;
 
