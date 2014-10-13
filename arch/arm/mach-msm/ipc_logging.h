@@ -104,6 +104,14 @@ struct ipc_log_context {
 	uint16_t header_size;
 	uint64_t log_id;
 	char name[IPC_LOG_MAX_CONTEXT_NAME_LEN];
+ * @write_avail:  Number of bytes available to write in all pages
+ * @dent:  Debugfs node for run-time log extraction
+ * @dfunc_info_list:  List of deserialization functions
+ * @ipc_log_context_lock:  Lock for entire structure
+ * @read_avail:  Completed when new data is added to the log
+ */
+struct ipc_log_context {
+	uint16_t user_version;
 
 	/* add local data structures after this point */
 	struct list_head list;

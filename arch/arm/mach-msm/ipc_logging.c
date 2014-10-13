@@ -756,10 +756,6 @@ void *ipc_log_context_create(int max_num_pages,
 		list_add_tail(&pg->hdr.list, &ctxt->page_list);
 		spin_unlock_irqrestore(&ctxt->context_lock_lhb1, flags);
 	}
-
-	ctxt->log_id = (uint64_t)(uintptr_t)ctxt;
-	ctxt->version = IPC_LOG_VERSION;
-	strlcpy(ctxt->name, mod_name, IPC_LOG_MAX_CONTEXT_NAME_LEN);
 	ctxt->user_version = user_version;
 	ctxt->first_page = get_first_page(ctxt);
 	ctxt->last_page = pg;
