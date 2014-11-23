@@ -20,6 +20,7 @@
 #include <linux/io.h>
 #include <linux/ktime.h>
 #include <linux/smp.h>
+#include <linux/sched.h>
 #include <linux/tick.h>
 #include <linux/delay.h>
 #include <linux/platform_device.h>
@@ -42,6 +43,10 @@
 #include "spm.h"
 #include "pm-boot.h"
 #include "clock.h"
+
+#ifdef CONFIG_LGE_PM
+#include <mach/board_lge.h>
+#endif
 
 #define CREATE_TRACE_POINTS
 #include <mach/trace_msm_low_power.h>
