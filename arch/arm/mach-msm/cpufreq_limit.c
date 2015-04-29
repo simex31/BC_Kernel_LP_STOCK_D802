@@ -46,10 +46,12 @@ static int update_cpu_max_freq(int cpu, uint32_t max_freq)
 	else
 		pr_info("%s: Max frequency reset for cpu%d\n",
 			__func__, cpu);
-#endif
+
 	ret = cpufreq_update_policy(cpu);
 
 	return ret;
+#endif
+
 }
 
 static ssize_t msm_cpufreq_limit_show(struct kobject *kobj,
