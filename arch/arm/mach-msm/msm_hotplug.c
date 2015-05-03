@@ -38,16 +38,6 @@
 #define DEFAULT_MAX_CPUS_ONLINE	NR_CPUS
 #define DEFAULT_FAST_LANE_LOAD	99
 
-static inline cputime64_t get_cpu_iowait_time(unsigned int cpu,
-                                                        cputime64_t *wall)
-{
-        u64 iowait_time = get_cpu_iowait_time_us(cpu, wall);
- 
-        if (iowait_time == -1ULL)
-                return 0;
- 
-        return iowait_time;
-
 static inline u64 get_cpu_idle_time_jiffy(unsigned int cpu, u64 *wall)
 {
        u64 idle_time;
