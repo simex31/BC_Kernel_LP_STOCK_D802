@@ -976,7 +976,7 @@ ssize_t acpuclk_get_vdd_levels_str(char *buf)
 	return len;
 }
 
-ssize_t acpuclk_set_vdd(char *buf)
+ssize_t acpuclk_set_vdd_msm(char *buf)
 {
 	unsigned int cur_volt;
 	char count[10];
