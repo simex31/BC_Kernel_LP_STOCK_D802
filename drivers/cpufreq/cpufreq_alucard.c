@@ -642,7 +642,7 @@ static int cpufreq_governor_alucard(struct cpufreq_policy *policy,
 
 		INIT_DELAYED_WORK_DEFERRABLE(&this_alucard_cpuinfo->work, do_alucard_timer);
 
-		queue_delayed_work_on(cpu, system_wq, &this_alucard_cpuinfo->work, delay);
+		mod_delayed_work_on(cpu, system_wq, &this_alucard_cpuinfo->work, delay);
 
 		break;
 
