@@ -4468,7 +4468,7 @@ static void a3xx_postmortem_dump(struct adreno_device *adreno_dev)
 	kgsl_regread(device, REG_CP_STAT, &cp_stat);
 	KGSL_LOG_DUMP(device, "CP_STAT      = %08X\n", cp_stat);
 #ifndef CONFIG_MSM_KGSL_PSTMRTMDMP_CP_STAT_NO_DETAIL
-/*
+
 	{
 		struct log_field lns[] = {
 			{cp_stat & BIT(0), "WR_BSY     0"},
@@ -4517,11 +4517,10 @@ static void a3xx_postmortem_dump(struct adreno_device *adreno_dev)
 		};
 		adreno_dump_fields(device, " CP_STT=", lns, ARRAY_SIZE(lns));
 	}
-*/
 #endif
 
 	kgsl_regread(device, A3XX_RBBM_INT_0_STATUS, &r1);
-	KGSL_LOG_DUMP(device, "MSTR_INT_SGNL = %08X\n", r1);
+
 	{
 		struct log_field ints[] = {
 			{r1 & BIT(0),  "RBBM_GPU_IDLE 0"},
@@ -4551,6 +4550,10 @@ static void a3xx_postmortem_dump(struct adreno_device *adreno_dev)
 		};
 		adreno_dump_fields(device, "INT_SGNL=", ints, ARRAY_SIZE(ints));
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> b1042df... msm: gpu: Enable tracing and postmortem due to compile issues
 }
 
 /* Register offset defines for A3XX */
