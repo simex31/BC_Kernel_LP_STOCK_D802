@@ -1053,7 +1053,6 @@ int kgsl_pwrctrl_init(struct kgsl_device *device)
 	pwr->default_pwrlevel = pwr->min_pwrlevel;	/* (100Mhz) */
 	pwr->init_pwrlevel = pdata->init_level;		/* (320Mhz) */
 	pwr->wakeup_maxpwrlevel = 0;
-	
 	for (i = 0; i < pdata->num_levels; i++) {
 		pwr->pwrlevels[i].gpu_freq =
 		(pdata->pwrlevel[i].gpu_freq > 0) ?
@@ -1511,7 +1510,7 @@ void kgsl_pwrctrl_set_state(struct kgsl_device *device, unsigned int state)
 	trace_kgsl_pwr_set_state(device, state);
 	device->state = state;
 	device->requested_state = KGSL_STATE_NONE;
-	pwrscale->devfreq->state = state;
+	pwrscale->devfreqptr->state = state;
 }
 EXPORT_SYMBOL(kgsl_pwrctrl_set_state);
 
