@@ -4550,10 +4550,7 @@ static void a3xx_postmortem_dump(struct adreno_device *adreno_dev)
 		};
 		adreno_dump_fields(device, "INT_SGNL=", ints, ARRAY_SIZE(ints));
 	}
-<<<<<<< HEAD
-=======
 
->>>>>>> b1042df... msm: gpu: Enable tracing and postmortem due to compile issues
 }
 
 /* Register offset defines for A3XX */
