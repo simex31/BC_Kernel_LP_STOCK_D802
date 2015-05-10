@@ -2046,7 +2046,8 @@ static int restart_notifier_cb(struct notifier_block *this,
 	if (code == SUBSYS_BEFORE_SHUTDOWN) {
 		BAM_DMUX_LOG("%s: begin\n", __func__);
 		in_global_reset = 1;
-		/* sync to ensure the driver sees SSR */
+		in_ssr = 1;
+		/* wait till all bam_dmux writes completes */
 		synchronize_srcu(&bam_dmux_srcu);
 		BAM_DMUX_LOG("%s: ssr signaling complete\n", __func__);
 		flush_workqueue(bam_mux_rx_workqueue);
@@ -2124,6 +2125,7 @@ static int bam_init(void)
 	int skip_iounmap = 0;
 
 	in_global_reset = 0;
+	in_ssr = 0;
 	vote_dfab();
 	/* init BAM */
 	a2_virt_addr = ioremap_nocache((unsigned long)(a2_phys_base),
@@ -2465,8 +2467,6 @@ EXPORT_SYMBOL(msm_bam_dmux_set_bam_ops);
  */
 void msm_bam_dmux_deinit(void)
 {
-	restart_notifier_cb(NULL, SUBSYS_BEFORE_SHUTDOWN, NULL);
-	restart_notifier_cb(NULL, SUBSYS_AFTER_SHUTDOWN, NULL);
 	restart_notifier_cb(NULL, SUBSYS_BEFORE_POWERUP, NULL);
 	restart_notifier_cb(NULL, SUBSYS_AFTER_POWERUP, NULL);
 	in_global_reset = 0;
