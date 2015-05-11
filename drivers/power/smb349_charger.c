@@ -727,7 +727,7 @@ rt_error:
 	return false;
 }
 
-dc_charger_present = 0;
+static int dc_charger_present = 0;
 static bool smb349_is_charger_present(struct i2c_client *client)
 {
 	u8 irq_status_e;
